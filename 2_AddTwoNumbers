@@ -1,0 +1,28 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# 아이디어 : 전가산기 구현! => 자세한 내용은 readme.md에 기록해놨다!
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        root = head = ListNode(0)
+
+        carry = 0
+        while l1 or l2 or carry:
+            sum = 0
+            if l1:
+                sum += l1.val
+                l1 = l1.next
+            if l2:
+                # 만약 [2,4,3],[5,6,7]이면 이자리에서 sum을 찍으면 [7,10,7]이 된다. 그러면 7/10/7 이 된다.  이 경우 [7,0,8]을 출력하도록 하면 된다.
+                sum += l2.val
+                l2 = l2.next
+
+            # divmod는 몫과 나머지로 구성된 튜플 출력 즉 (a//b, a%b)
+            carry, val = divmod(sum+carry, 10)
+            head.next = ListNode(val)
+            head = head.next
+
+        return root.next  # 만약에 root로 하면 [0,7,0,8]이 된다.
