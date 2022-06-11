@@ -1,0 +1,11 @@
+N= int(input())
+
+
+result = []
+for i in range(N):
+    k= input().split()
+    for j in range(len(k)):
+        result.append(k[j][::-1])
+
+    print(' '.join(result))
+    result = []
