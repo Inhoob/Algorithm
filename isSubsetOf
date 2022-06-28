@@ -1,0 +1,34 @@
+const isSubsetOf = function (base, sample) {
+  // TODO: 여기에 코드를 작성합니다.
+  base.sort((a, b) => a - b);
+  sample.sort((a, b) => a - b);
+  //시간복잡도를 줄이는 아이디어=> 내가 sample의 값을 base에서 찾았을 때 그 값의 idx를 확인해서 다음 서치부터는 그 idx부터만 찾는다.
+  //만약 base에서 그 idx를 찾지못한다? 그건 부분집합이 아니라는 뜻
+
+  const findItemInSortedArr = (item, arr, from) => {
+    for (let i = from; i < arr.length; i++) {
+      if (item === arr[i]) {
+        return i;
+      } else if (item < arr[i]) return -1;
+    }
+    return -1;
+  };
+  baseIdx = 0;
+  for (let i = 0; i < sample.length; i++) {
+    baseIdx = findItemInSortedArr(sample[i], base, baseIdx);
+    if (baseIdx === -1) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// let base = [1, 2, 3, 4, 5];
+// let sample = [1, 3];
+// let output = isSubsetOf(base, sample);
+// console.log(output); // --> true
+
+// sample = [6, 7];
+// output = isSubsetOf(base, sample);
+// console.log(output); // --> false
+// https://urclass.codestates.com/codeproblem/c4dc39df-5d39-47d2-85e9-361cb60e0347
