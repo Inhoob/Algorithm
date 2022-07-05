@@ -28,3 +28,5 @@ const rotatedArraySearch = function (rotated, target) {
 
   return -1;
 };
+
+//코플릿 9번임
