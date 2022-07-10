@@ -35,3 +35,5 @@ function solution(id_list, report, k) {
 id_list = ["muzi", "frodo", "apeach", "neo"];
 report = ["muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"];
 console.log(solution(id_list, report, 2));
+
+//간단한 코드를 찾아볼 수 있으니 프로그래머스 참고
